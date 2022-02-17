@@ -1,4 +1,4 @@
-import { checkAuth, createTodo, getToDos, logout, completeTodo, deleteAllTodos } from '../fetch-utils.js';
+import { checkAuth, createTodo, getToDos, logout, completeTodo } from '../fetch-utils.js';
 import { renderToDo } from '../render-utils.js';
 
 checkAuth();
