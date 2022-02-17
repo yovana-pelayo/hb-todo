@@ -1,12 +1,11 @@
 import { checkAuth, createTodo, getToDos, logout, completeTodo } from '../fetch-utils.js';
 import { renderToDo } from '../render-utils.js';
 
-checkAuth();
-
 const todosEl = document.querySelector('.todos');
 const todoForm = document.querySelector('.todo-form');
 const logoutButton = document.querySelector('#logout');
 const deleteButton = document.querySelector('.delete-button');
+checkAuth();
 
 async function renderToDos() {
     const todoListEl = document.getElementById('todo-list');

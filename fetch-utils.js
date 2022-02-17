@@ -11,14 +11,11 @@ export async function getUser() {
 export async function signupUser(email, password) {
     const response = await client.auth.signUp({ email, password });
     console.log(response);
-
-
     return response.user;
 }
 
 export async function signInUser(email, password) {
     const response = await client.auth.signIn({ email, password });
-
     return response.user;
 }
 export async function checkAuth() {
@@ -68,8 +65,6 @@ export async function redirectIfLoggedIn() {
         location.replace('./todos');
     }
 }
-
-
 
 export async function logout() {
     await client.auth.signOut();
