@@ -1,4 +1,10 @@
-export function renderTodo(todo) {
+export function renderToDo(todo) {
+    const li = document.createElement('li');
+    if (todo.complete) {
+        li.classList.add('complete');
+    }
+    li.textContext = todo.description;
+    return li;
     // create a div and a p tag
     // depending on whether the todo is complete, give the div the appropriate css class ('complete' or 'incomplete')
 
