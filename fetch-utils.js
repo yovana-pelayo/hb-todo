@@ -1,7 +1,20 @@
 const SUPABASE_URL = 'https://gxwgjhfyrlwiqakdeamc.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNjQxMTMxMiwiZXhwIjoxOTUxOTg3MzEyfQ.PHekiwfLxT73qQsLklp0QFEfNx9NlmkssJFDnlvNIcA';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InN3Z2l1Y2ZsZW9hb25hd2psdm1lIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NDQ0NTIxNjEsImV4cCI6MTk2MDAyODE2MX0.KwPiwmAFu_q_7yxOSUYv4k6Ejgu8uDsvfsGLixOpD9o';
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+export async function getUser() {
+    return client.auth.session();
+}
+export async function checkAuth() {
+    const user = await getUser();
+
+    if (!user) location.replace('../');
+}
+function checkError({ data, error }) {
+    // eslint-disable-next-line no-console
+    return error ? console.error(error) : data;
+}
 
 // eslint-disable-next-line no-unused-vars
 export async function createTodo(description) {
@@ -27,23 +40,12 @@ export async function getToDos() {
     
 
 export async function completeTodo(id) {
+    const resp = await client.from('todos').update({ complete: true }).match({ id });
     // find the and update (set complete to true), the todo that matches the correct id
-
-    return checkError(response);
+    return checkError(resp);
 }
 
-export async function getUser() {
-    return client.auth.session();
-}
-function checkError({ data, error }) {
-    return error ? console.error(error) : data;
-}
 
-export async function checkAuth() {
-    const user = await getUser();
-
-    if (!user) location.replace('../');
-}
 
 export async function redirectIfLoggedIn() {
     if (await getUser()) {

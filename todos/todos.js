@@ -1,4 +1,4 @@
-import { checkAuth, createTodo, getToDos, logout ,completeTodo, deleteAllTodos } from '../fetch-utils.js';
+import { checkAuth, createTodo, getToDos, logout, completeTodo, deleteAllTodos } from '../fetch-utils.js';
 import { renderToDo } from '../render-utils.js';
 
 checkAuth();
@@ -14,23 +14,22 @@ async function renderToDos() {
     const todos = await getToDos();
     for (let todo of todos) {
         const li = renderToDo(todo);
-        li.addEventListener('click', async() => {
+        li.addEventListener('click', async () => {
             await completeTodo(todo.id);
             renderToDos();
-
         });
         todoListEl.append(li);    
     }
 }
 renderToDos(); 
-// todoForm.addEventListener('submit', async(e) => { 
-//     e.preventDefault();
-//     const data = new FormData(todoForm);
-//     await createTodo(data.get('description'));
-//     renderToDos();
-//     todoForm.reset();
-//     // on submit, create a todo, reset the form, and display the todos
-// });
+todoForm.addEventListener('submit', async(e) => { 
+    e.preventDefault();
+    const data = new FormData(todoForm);
+    await createTodo(data.get('description'));
+    renderToDos();
+    todoForm.reset();
+    // on submit, create a todo, reset the form, and display the todos
+});
 
 async function displayTodos() {
     // fetch the todos
