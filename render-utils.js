@@ -1,8 +1,6 @@
 export function renderToDo(todo) {
     const li = document.createElement('li');
-    if (todo.complete) {
-        li.classList.add('complete');
-    }
+    li.classList.add('complete');
     li.textContext = todo.description;
     return li;
     // create a div and a p tag
