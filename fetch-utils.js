@@ -20,7 +20,6 @@ export async function redirectIfLoggedIn() {
 }
 export async function signupUser(email, password) {
     const response = await client.auth.signUp({ email, password });
-    console.log(response);
     return response.user;
 }
 
@@ -50,13 +49,13 @@ export async function getToDos() {
     return checkError(resp);
 }
 
+
 export async function createTodo(description) {
-    const resp = await client.from('todos').insert({description});
-    console.log(resp);
+    const resp = await client.from('todos').insert({ description });
     // create a single incomplete todo with the correct 'todo' property for this user in supabase
     return checkError(resp);
 }
-export async function completeTodo(id) {
+export async function completeToDo(id) {
     const resp = await client.from('todos').update({ complete: true }).match({ id });
     // find the and update (set complete to true), the todo that matches the correct id
     return checkError(resp);

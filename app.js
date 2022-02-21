@@ -13,7 +13,6 @@ redirectIfLoggedIn();
 
 signUpForm.addEventListener('submit', async(event)=>{
     event.preventDefault();
-    console.log(signUpEmail.value, signUpPassword.value);
     await signupUser(signUpEmail.value, signUpPassword.value);
     redirectIfLoggedIn();
 });
