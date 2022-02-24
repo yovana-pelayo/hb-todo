@@ -16,22 +16,22 @@ async function renderToDos() {
     const todos = await getToDos();
     for (let todo of todos) {
         const li = renderToDo(todo);
-        // li.addEventListener('click', async() => {
-        //     await completeToDo(todo.id);
-        renderToDos();
-        
-        todoListEl.append(li);   
+        li.addEventListener('click', async() => {
+            await completeToDo(todo.id);
+            renderToDos();
+        });
+        todoListEl.append(li);  
     }
-} 
+}
 renderToDos();
-
+    
 const form = document.getElementById('todo-form');
 form.addEventListener('submit', async(e) => { 
     e.preventDefault();
     const data = new FormData(form);
-    console.log('data', data.get('todo'));
+    // console.log('data', data.get('todo'));
     await createTodo(data.get('description'));
-    renderToDos();
+    form.reset();
 //     // on submit, create a todo, reset the form, and display the todos
 });
 

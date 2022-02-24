@@ -25,6 +25,7 @@
 }
 
 .todo {
+    color: black;
     background-color: lightgray;
     width: 80%;
     font-size: 2rem;
@@ -35,13 +36,13 @@
     cursor: pointer;
 }
 
-.complete {
-    text-decoration: line-through;
-    background-color: lightgreen;
-}
 
 .delete-button {
     background-color: crimson;
     margin: 20px;
     font-size: 1.3rem;
+}
+.complete {
+    color: black;
+    
 }

@@ -52,6 +52,7 @@ export async function getToDos() {
 
 export async function createTodo(description) {
     const resp = await client.from('todos').insert({ description });
+    // console.log(resp);
     // create a single incomplete todo with the correct 'todo' property for this user in supabase
     return checkError(resp);
 }
@@ -59,5 +60,4 @@ export async function completeToDo(id) {
     const resp = await client.from('todos').update({ complete: true }).match({ id });
     // find the and update (set complete to true), the todo that matches the correct id
     return checkError(resp);
-
 }
