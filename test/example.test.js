@@ -6,7 +6,7 @@ const test = QUnit.test;
 test('a complete todo should render a list with a class', (expect) => {
     //Arrange
     // Set up your arguments and expectations
-    const expected = `<li class="complete"> Walk dog,</li>`;
+    const expected = `<li class="complete">Walk dog</li>`;
     
     //Act 
     // Call the function you're testing and set the result to a const
