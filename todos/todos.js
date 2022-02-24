@@ -10,20 +10,23 @@ logoutButton.addEventListener('click', () => {
 });
    
 
-async function renderToDos() {
-    const todoListEl = document.getElementById('todo-list');
-    todoListEl.textContent = '';
+const todoListEl = document.getElementById('todo-list');
+
+async function displayTodos() {
     const todos = await getToDos();
+    todoListEl.textContent = '';
+
     for (let todo of todos) {
         const li = renderToDo(todo);
         li.addEventListener('click', async() => {
             await completeToDo(todo.id);
-            renderToDos();
+            // console.log('hello', todo);
+
+            displayTodos();
         });
         todoListEl.append(li);  
     }
 }
-renderToDos();
     
 const form = document.getElementById('todo-form');
 form.addEventListener('submit', async(e) => { 
@@ -31,6 +34,7 @@ form.addEventListener('submit', async(e) => {
     const data = new FormData(form);
     // console.log('data', data.get('todo'));
     await createTodo(data.get('description'));
+    displayTodos();
     form.reset();
 //     // on submit, create a todo, reset the form, and display the todos
 });
@@ -46,8 +50,8 @@ form.addEventListener('submit', async(e) => {
 
 // add an on load listener that fetches and displays todos on load
 
-deleteButton.addEventListener('click', async() => {
-    // delete all todos
 
-    // then refetch and display the updated list of todos
+deleteButton.addEventListener('click', async() => {
+   
 });
+    

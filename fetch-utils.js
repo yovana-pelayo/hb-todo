@@ -45,7 +45,7 @@ function checkError({ data, error }) {
 
 export async function getToDos() {
     // get all todos for this user from supabase
-    const resp = await client.from('todos').select();
+    const resp = await client.from('todos').select().order('id');
     return checkError(resp);
 }
 
@@ -61,3 +61,13 @@ export async function completeToDo(id) {
     // find the and update (set complete to true), the todo that matches the correct id
     return checkError(resp);
 }
+// export async function deleteToDos(id) { const response = await client .from('todo_shopping')
+//     .delete()
+//     .match({ id })
+//     .single();
+// // console.log(id);
+// return checkError(response);
+// }
+//something is wrong with match. reading input as null
+
+//asl julie tomorrow
