@@ -11,25 +11,23 @@
         />
         <link rel="stylesheet" href="../styles/reset.css" />
         <link rel="stylesheet" href="../styles/style.css" />
-        <link rel="stylesheet" href="../styles/home.css" />
         <link rel="stylesheet" href="./todos.css" />
         <title>Document</title>
     </head>
-
+     
     <body>
         <header>
-            <div class="gutter-right logo">
-                <h3>Todos</h3>
+            <button id="logout">Logout</button>
+                <h3>Todo List</h3>
             </div>
         </header>
         <main class="todos-main">
-            <button id="logout">Logout</button>
-            <form class="todo-form">
-                <input name="todo" required />
+            <form id="todo-form">
+                <input type="text" name="description" id="description" />
                 <button>Add todo</button>
             </form>
-            <button class="delete-button">Delete all todos?</button>
-            <div class="todos"></div>
+            <ul id="todo-list"></ul>
+            <button id="delete">Delete all todos?</button>
         </main>
         <footer>
             <div class="copy gutter-right">&copy; 2021 Alchemy Code Lab</div>
