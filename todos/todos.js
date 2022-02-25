@@ -41,5 +41,6 @@ const deleteButton = document.getElementById('delete');
 
 deleteButton.addEventListener('click', async() => {
     await deleteAll();
+    displayTodos();
 });
 displayTodos();

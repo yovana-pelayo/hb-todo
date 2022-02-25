@@ -3,7 +3,7 @@ const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-export async function getUser() {
+export function getUser() {
     return client.auth.session() && client.auth.session().user;
 
 }
@@ -62,7 +62,8 @@ function checkError({ data, error }) {
     return error ? console.error(error) : data;
 }
 export async function deleteAll() { 
-    const response = await client.from('todos').delete().match({ user_id: getUser().id });
-// console.log(id);
-    return response;
+    const resp = await client.from('todos').delete().match({ user_id: getUser().id });
+
+console.log(getUser().id);
+    return resp;
 }
