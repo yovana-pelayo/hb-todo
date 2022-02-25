@@ -43,6 +43,6 @@
     font-size: 1.3rem;
 }
 .complete {
-    color: black;
+text-decoration: line-through;
     
 }

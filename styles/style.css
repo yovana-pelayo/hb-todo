@@ -59,45 +59,4 @@ footer {
     display: flex;
     justify-content: flex-end;
 
-
-@keyframes pulse {
-    20% {
-        transform: rotate3d(-10, -10, -10, 50deg) scale(1.2);
-    }
-
-    40% {
-        transform: rotate3d(10, 10, -10, 50deg) scale(1);
-    }
-
-    60% {
-        transform: rotate3d(-10, 10, 10, 50deg) scale(1.2);
-    }
-
-    80% {
-        transform: rotate3d(10, 10, 10, 50deg) scale(1);
-    }
-}
-
-#logout {
-    position: fixed;
-    right: 20px;
-    top: 90px;
-}
-
-.auth-main {
-    display: flex;
-    flex-direction: row;
-}
-
-.auth-container {
-    margin: 10px;
-}
-
-.auth-container form {
-    display: flex;
-    flex-direction: column;
-}
-
-.auth-container button {
-    margin: 10px;
 }

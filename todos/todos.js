@@ -1,9 +1,8 @@
-import { checkAuth, createTodo, getToDos, logout, completeToDo } from '../fetch-utils.js';
+import { checkAuth, createTodo, getToDos, logout, completeToDo, deleteAll } from '../fetch-utils.js';
 import { renderToDo } from '../render-utils.js';
-
-const logoutButton = document.querySelector('#logout');
-const deleteButton = document.querySelector('.delete-button');
 checkAuth();
+
+const logoutButton = document.getElementById('logout');
 
 logoutButton.addEventListener('click', () => {
     logout();
@@ -13,15 +12,13 @@ logoutButton.addEventListener('click', () => {
 const todoListEl = document.getElementById('todo-list');
 
 async function displayTodos() {
-    const todos = await getToDos();
     todoListEl.textContent = '';
 
+    const todos = await getToDos();
     for (let todo of todos) {
         const li = renderToDo(todo);
         li.addEventListener('click', async() => {
             await completeToDo(todo.id);
-            // console.log('hello', todo);
-
             displayTodos();
         });
         todoListEl.append(li);  
@@ -39,19 +36,10 @@ form.addEventListener('submit', async(e) => {
 //     // on submit, create a todo, reset the form, and display the todos
 });
 
-    // fetch the todos
 
-    // display the list of todos
-
-    // be sure to give each todo an event listener
-
-    // on click, complete that todo
-
-
-// add an on load listener that fetches and displays todos on load
-
+const deleteButton = document.getElementById('delete');
 
 deleteButton.addEventListener('click', async() => {
-   
+    await deleteAll();
 });
-    
+displayTodos();

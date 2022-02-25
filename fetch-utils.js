@@ -12,6 +12,7 @@ export async function checkAuth() {
 
     if (!user) location.replace('../');
 }
+
 export async function redirectIfLoggedIn() {
     const user = await getUser();
     if (user) {
@@ -38,11 +39,6 @@ export async function logout() {
 
     return (window.location.href = '../');
 }
-function checkError({ data, error }) {
-    // eslint-disable-next-line no-console
-    return error ? console.error(error) : data;
-}
-
 export async function getToDos() {
     // get all todos for this user from supabase
     const resp = await client.from('todos').select().order('id');
@@ -51,7 +47,7 @@ export async function getToDos() {
 
 
 export async function createTodo(description) {
-    const resp = await client.from('todos').insert({ description });
+    const resp = await client.from('todos').insert({ description, user_id: getUser().id });
     // console.log(resp);
     // create a single incomplete todo with the correct 'todo' property for this user in supabase
     return checkError(resp);
@@ -61,13 +57,12 @@ export async function completeToDo(id) {
     // find the and update (set complete to true), the todo that matches the correct id
     return checkError(resp);
 }
-// export async function deleteToDos(id) { const response = await client .from('todo_shopping')
-//     .delete()
-//     .match({ id })
-//     .single();
-// // console.log(id);
-// return checkError(response);
-// }
-//something is wrong with match. reading input as null
-
-//asl julie tomorrow
+function checkError({ data, error }) {
+    // eslint-disable-next-line no-console
+    return error ? console.error(error) : data;
+}
+export async function deleteAll() { 
+    const response = await client.from('todos').delete().match({ user_id: getUser().id });
+// console.log(id);
+    return response;
+}
