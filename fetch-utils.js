@@ -64,6 +64,5 @@ function checkError({ data, error }) {
 export async function deleteAll() { 
     const resp = await client.from('todos').delete().match({ user_id: getUser().id });
 
-console.log(getUser().id);
     return resp;
 }
